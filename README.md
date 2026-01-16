@@ -1,2 +1,2 @@
 # MaxCalCpp
-This is a rewrite of MaxCalc in C++.
+A rewrite of [MaxCalc](https://github.com/max-min-median/MaxCalc) in C++.
