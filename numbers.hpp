@@ -12,18 +12,18 @@ class RealNumber : public Number {
     static const int INPUT_TUPLE_SIZE = 2;
 
     int sign;
-    int numerator;
-    int denominator;
+    long long int numerator;
+    long long int denominator;
 
-    static int greatest_common_divisor(int a, int b);
+    static int greatest_common_divisor(long long int a, long long int b);
 
-    RealNumber(int value);
+    RealNumber(long long int value);
     RealNumber(std::string value);
-    RealNumber(int value[RealNumber::INPUT_TUPLE_SIZE]);
+    RealNumber(long long int value[RealNumber::INPUT_TUPLE_SIZE]);
 
-    int fast_continued_fraction();
+    //int fast_continued_fraction();
 
-    bool is_int();
+    //bool is_int();
 };
 
 class ComplexNumber;
