@@ -1,5 +1,5 @@
-maxcalc: maxcalc.o numbers.o
-	g++ maxcalc.o numbers.o -o maxcalc.app
+maxcalc: maxcalc.o realnumber.o
+	g++ maxcalc.o realnumber.o -o maxcalc.app
 
 clean:
-	rm -f maxcalc.o numbers.o
+	rm -f *.o

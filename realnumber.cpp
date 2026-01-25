@@ -52,3 +52,12 @@ int RealNumber::greatest_common_divisor(long long int a, long long int b) {
         return greatest_common_divisor(b, a % b);
     }
 }
+
+void RealNumber::simplify() {
+    long long int divisor = RealNumber::greatest_common_divisor(this->numerator, this->denominator);
+    this->numerator /= divisor;
+    this->denominator /= divisor;
+}
+
+// RealNumber fast_continued_fraction() {
+// }

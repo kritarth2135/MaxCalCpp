@@ -1,3 +1,6 @@
+#ifndef NUMBERS_H
+#define NUMBERS_H
+
 #include <regex>
 #include <string>
 
@@ -21,9 +24,11 @@ class RealNumber : public Number {
     RealNumber(std::string value);
     RealNumber(long long int value[RealNumber::INPUT_TUPLE_SIZE]);
 
-    //int fast_continued_fraction();
+    void simplify();
 
-    //bool is_int();
+    int fast_continued_fraction();
 };
 
 class ComplexNumber;
+
+#endif // NUMBERS_H
