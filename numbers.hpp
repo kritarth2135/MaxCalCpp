@@ -21,14 +21,14 @@ class RealNumber : public Number {
     static int greatest_common_divisor(long long int a, long long int b);
 
     RealNumber(long long int value);
-    RealNumber(std::string value);
-    RealNumber(long long int value[RealNumber::INPUT_TUPLE_SIZE]);
+    RealNumber(std::string value, bool fcf = true);
+    RealNumber(long long int value[RealNumber::INPUT_TUPLE_SIZE], bool fcf = true);
 
     void simplify();
 
-    int fast_continued_fraction();
+    RealNumber fast_continued_fraction();
 };
 
 class ComplexNumber;
 
-#endif // NUMBERS_H
+#endif // !NUMBERS_H

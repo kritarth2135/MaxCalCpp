@@ -1,8 +1,8 @@
-#include <cmath>
 #include <regex>
 #include <stdexcept>
 #include <string>
 
+#include "my_math.hpp"
 #include "numbers.hpp"
 
 const std::regex RealNumber::INTEGER_REGEX("^(-)?(\\d+)");
@@ -15,7 +15,7 @@ RealNumber::RealNumber(long long int value) {
     this->denominator = 1;
 }
 
-RealNumber::RealNumber(std::string value) {
+RealNumber::RealNumber(std::string value, bool fcf = true) {
     std::smatch matched_value;
 
     if (std::regex_match(value, matched_value, RealNumber::INTEGER_REGEX)) {
@@ -26,7 +26,7 @@ RealNumber::RealNumber(std::string value) {
     }
     else if (std::regex_match(value, matched_value, RealNumber::FLOAT_REGEX)) {
         this->numerator = std::stoi(matched_value[2].str() + matched_value[3].str());
-        this->denominator = std::pow(10, matched_value[3].str().length());
+        this->denominator = power(10, matched_value[3].str().length());
         this->sign = (this->numerator == 0) ? this->sign = 0 : (matched_value[1].str() == "-") ? this->sign = -1 : this->sign = 1;
     }
     else if (std::regex_match(value, matched_value, RealNumber::FRACTION_REGEX)) {
@@ -37,9 +37,18 @@ RealNumber::RealNumber(std::string value) {
         }
         this->sign = (this->numerator == 0) ? this->sign = 0 : (matched_value[1].str() == "-") ? this->sign = -1 : this->sign = 1;
     }
+
+    if (this->denominator != 1) {
+        this->simplify();
+        if (fcf) {
+            RealNumber temp(this->fast_continued_fraction());
+            this->numerator = temp.numerator;
+            this->denominator = temp.denominator;
+        }
+    }
 }
 
-RealNumber::RealNumber(long long int value[RealNumber::INPUT_TUPLE_SIZE]) {
+RealNumber::RealNumber(long long int value[RealNumber::INPUT_TUPLE_SIZE], bool fcf = true) {
     this->sign = (value[0] > 0) - (value[0] < 0);
     this->numerator = value[0] * this->sign;
     this->denominator = value[1];
@@ -59,5 +68,5 @@ void RealNumber::simplify() {
     this->denominator /= divisor;
 }
 
-// RealNumber fast_continued_fraction() {
-// }
+RealNumber RealNumber::fast_continued_fraction() {
+}
